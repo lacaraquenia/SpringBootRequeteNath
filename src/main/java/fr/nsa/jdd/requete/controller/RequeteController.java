@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,8 @@ public class RequeteController {
 	
 	@Autowired
 	private Environment env;
+	
+	Logger logger=LoggerFactory.getLogger(RequeteController.class);
 	
 	
 	@GetMapping("/requetes")
@@ -52,7 +56,8 @@ public class RequeteController {
 	public Requete createNewRequete(@RequestBody Requete requete){
 		Optional<Requete> addedRequete=requeteService.createRequete(requete);
 		Requete resultat=addedRequete.isPresent()?addedRequete.get():new Requete();
-		System.out.println(resultat);
+		//System.out.println(resultat);
+		logger.debug(resultat.toString());
 		return resultat;
 	}
 	
