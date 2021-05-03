@@ -1,8 +1,12 @@
 package fr.nsa.jdd.requete.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +20,23 @@ public class RequeteController {
 	@Autowired
 	RequeteService requeteService;
 	
+//	@Value("${nsa.prop.chiffre}")
+//	private String propChiffre;
+	
+	@Autowired
+	private Environment env;
+	
+	
 	@GetMapping("/requetes")
-	public String getAllRequetes(){
-		requeteService.getAllRequete();
-		return "111";
+	public List<Requete> getAllRequetes(){
+		 List<Requete> listeRequetes=requeteService.getAllRequete();
+		 System.out.println(env.getProperty("nsa.prop.monProfile"));
+		 System.out.println("*****");
+		 System.out.println(env.getProperty("nsa.prop.chiffre"));
+		 String rownumbers=env.getProperty("nsa.prop.rownumbers");
+		 String[] arrRowNumbers=rownumbers.split(";");
+		 System.out.println("Rownumbers: " + Arrays.toString(arrRowNumbers));
+		return listeRequetes;
 	}
 	
 	@GetMapping("/requetes/{id}")

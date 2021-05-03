@@ -1,0 +1,29 @@
+#Postgres database
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+#Log level configuration
+logging:
+  level:
+    org:
+      springframework: ERROR
+    com:
+      nsa: INFO
+
+
+
+
+
+
+#Propriétés à moi:
+nsa:
+  prop:
+   chiffre: '999'
+   monProfile: 'global'
+   rownumbers: '1;2;5;10'
+   
+   
