@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.nsa.jdd.requete.model.Requete;
@@ -45,6 +46,14 @@ public class RequeteController {
 		Requete requeteVide=new Requete();
 		Requete requeteResultat=optionalRequete.isPresent()?optionalRequete.get():requeteVide;
 		return requeteResultat;
+	}
+	
+	@PostMapping (value = "/requetes")
+	public Requete createNewRequete(@RequestBody Requete requete){
+		Optional<Requete> addedRequete=requeteService.createRequete(requete);
+		Requete resultat=addedRequete.isPresent()?addedRequete.get():new Requete();
+		System.out.println(resultat);
+		return resultat;
 	}
 	
 	

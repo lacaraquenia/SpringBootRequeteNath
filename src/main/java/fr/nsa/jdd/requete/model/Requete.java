@@ -30,6 +30,9 @@ public class Requete {
 	protected String desc_requete;
 
 	
-
+	@Override
+	public String toString() {
+		return "Requete: "+id+"-"+ nom_requete + "\n\tDescription: " +desc_requete;
+	}
 	
 }

@@ -29,5 +29,9 @@ public class RequeteService {
 		Optional<Requete> requeteOptional=requeteRepository.findById(id);
 		return requeteOptional;
 	}
-
+	
+	public Optional<Requete> createRequete(Requete requete){
+		Requete req=requeteRepository.save(requete);
+		return Optional.of(req);
+	}
 }
