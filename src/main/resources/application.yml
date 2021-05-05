@@ -7,6 +7,9 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
+  liquibase:
+    change-log: classpath:/db/changelogs/db.changelog.yml
+    
 
 
 #Log level configuration
@@ -16,7 +19,6 @@ logging:
       springframework: ERROR
     com:
       nsa: INFO
-
 
 
 
